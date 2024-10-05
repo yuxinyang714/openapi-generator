@@ -915,11 +915,15 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
             varName = varName.replaceAll("_+", "_");
         }
         varName = sanitizeName(varName);
+
+        // Replace multiple underscores with a single underscore
+        varName = varName.replaceAll("_+", "_");
+
         varName = varName.replaceFirst("^_", "");
         varName = varName.replaceFirst("_$", "");
 
         //name all variables with uppercase and underscore
-        varName = underscore(name).toUpperCase(Locale.ROOT);;
+        varName = underscore(varName).toUpperCase(Locale.ROOT);;
 
         if (varName.matches("\\d.*")) { // starts with number
             return "_" + varName;
